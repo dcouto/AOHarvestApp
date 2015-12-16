@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Index</h2>
+
+<p>Fill-out the form below and click the submit button to get your entries for today.</p>
+
+<form action="/home/getdayentries" method="post">
+    <fieldset>
+        <div><label>Sub-domain: <input type="text" id="subDomain" name="subDomain" /></label></div>
+        <div><label>Email: <input type="email" id="email" name="email" /></label></div>
+        <div><label>Password: <input type="password" id="password" name="password"/></label></div>
+
+        <div><input type="submit" value="Submit" /></div>
+    </fieldset>
+</form>

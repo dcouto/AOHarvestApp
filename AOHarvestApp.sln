@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.Web", "AOHarvestApp.Web\AOHarvestApp.Web.csproj", "{41AA368A-6850-4E4D-85EE-1B3869E729AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.Tasks", "AOHarvestApp.Tasks\AOHarvestApp.Tasks.csproj", "{77B88CD8-A299-4892-BEC8-BBE26124C304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.Models", "AOHarvestApp.Models\AOHarvestApp.Models.csproj", "{8B9DB72D-7E6C-47BC-AD60-EF72C57E4E7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.Managers", "AOHarvestApp.Managers\AOHarvestApp.Managers.csproj", "{C5142F45-E19C-476F-B8C0-C5DFFD834A2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.Manager.Interfaces", "AOHarvestApp.Manager.Interfaces\AOHarvestApp.Manager.Interfaces.csproj", "{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.IoCContainer", "AOHarvestApp.IoCContainer\AOHarvestApp.IoCContainer.csproj", "{6551F990-E7FA-409C-8AE5-D80DE167B9D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41AA368A-6850-4E4D-85EE-1B3869E729AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41AA368A-6850-4E4D-85EE-1B3869E729AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41AA368A-6850-4E4D-85EE-1B3869E729AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41AA368A-6850-4E4D-85EE-1B3869E729AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B88CD8-A299-4892-BEC8-BBE26124C304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B88CD8-A299-4892-BEC8-BBE26124C304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B88CD8-A299-4892-BEC8-BBE26124C304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B88CD8-A299-4892-BEC8-BBE26124C304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B9DB72D-7E6C-47BC-AD60-EF72C57E4E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9DB72D-7E6C-47BC-AD60-EF72C57E4E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9DB72D-7E6C-47BC-AD60-EF72C57E4E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9DB72D-7E6C-47BC-AD60-EF72C57E4E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5142F45-E19C-476F-B8C0-C5DFFD834A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5142F45-E19C-476F-B8C0-C5DFFD834A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5142F45-E19C-476F-B8C0-C5DFFD834A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5142F45-E19C-476F-B8C0-C5DFFD834A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

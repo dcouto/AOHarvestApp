@@ -1,0 +1,16 @@
+﻿@model AOHarvestApp.Web.ViewModels.Home.SendIncompleteDailyEntriesEmailViewModel
+
+@{
+    ViewBag.Title = "SendIncompleteDailyEntriesEmail";
+}
+
+<h2>SendIncompleteDailyEntriesEmail</h2>
+
+@if (Model.EmailSuccessfullySent)
+{
+    <p>Email successfully sent to @Model.Email.</p>
+}
+else
+{
+    <p>An error occurred sending the email to @Model.Email.</p>
+}
