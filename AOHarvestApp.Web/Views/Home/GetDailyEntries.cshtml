@@ -6,7 +6,7 @@
 
 <h2>Index</h2>
 
-<h3><strong>Total hours:</strong> @Model.DayEntries.Select(i => i.Hours).Sum()</h3>
+<h3><strong>Total hours:</strong> @Model.DailyEntries.Select(i => i.Hours).Sum()</h3>
 
 <p>Send reminder to user to complete his/her timesheet.</p>
 
@@ -17,7 +17,7 @@
 </form>
 
 <table>
-    @foreach (var de in Model.DayEntries)
+    @foreach (var de in Model.DailyEntries)
     {
         <tr>
             <td>

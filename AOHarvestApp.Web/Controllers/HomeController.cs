@@ -1,5 +1,4 @@
 ﻿using AOHarvestApp.Web.ViewModels.Home;
-using System.Linq;
 using System.Web.Mvc;
 using AOHarvestApp.Manager.Interfaces;
 
@@ -25,7 +24,7 @@ namespace AOHarvestApp.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetDayEntries(GetDayEntriesViewModel model)
+        public ActionResult GetDailyEntries(GetDayEntriesViewModel model)
         {
             var vm = new GetDayEntriesViewModel();
 
@@ -33,7 +32,7 @@ namespace AOHarvestApp.Web.Controllers
             _harvestManager.Email = model.Email;
             _harvestManager.Password = model.Password;
 
-            vm.DayEntries = _harvestManager.GetDayEntries();
+            vm.DailyEntries = _harvestManager.GetDailyEntries(model.DayOfTheYear, model.Year, model.UserId);
 
             return View(vm);
         }

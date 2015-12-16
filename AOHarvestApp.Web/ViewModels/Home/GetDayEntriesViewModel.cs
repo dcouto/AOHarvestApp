@@ -9,11 +9,17 @@ namespace AOHarvestApp.Web.ViewModels.Home
         public string SubDomain { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public IEnumerable<DayEntry> DayEntries { get; set; }
+        public int DayOfTheYear { get; set; }
+        public int Year { get; set; }
+        public int UserId { get; set; }
+        public IEnumerable<DayEntry> DailyEntries { get; set; }
 
         public GetDayEntriesViewModel()
         {
-            DayEntries = Enumerable.Empty<DayEntry>();
+            DayOfTheYear = -1;
+            Year = -1;
+            UserId = -1;
+            DailyEntries = Enumerable.Empty<DayEntry>();
         }
     }
 }

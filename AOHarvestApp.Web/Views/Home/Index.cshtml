@@ -6,12 +6,44 @@
 
 <p>Fill-out the form below and click the submit button to get your entries for today.</p>
 
-<form action="/home/getdayentries" method="post">
+<form action="/home/getdailyentries" method="post">
+    <h3>Login Info</h3>
     <fieldset>
-        <div><label>Sub-domain: <input type="text" id="subDomain" name="subDomain" /></label></div>
-        <div><label>Email: <input type="email" id="email" name="email" /></label></div>
-        <div><label>Password: <input type="password" id="password" name="password"/></label></div>
+        <label for="subDomain" class="col-md-2">Sub-domain:</label>
+        <div class="col-md-10">
+            <input type="text" id="subDomain" name="subDomain"/>
+        </div>
 
-        <div><input type="submit" value="Submit" /></div>
+        <label for="email" class="col-md-2">Email:</label>
+        <div class="col-md-10">
+            <input type="email" id="email" name="email"/>
+        </div>
+
+        <label for="password" class="col-md-2">Password:</label>
+        <div class="col-md-10">
+            <input type="password" id="password" name="password"/>
+        </div>
+    </fieldset>
+
+    <h3>Request Parameters</h3>
+    <fieldset>
+        <label for="dayOfTheYear" class="col-md-2">Day Of The Year:</label>
+        <div class="col-md-10">
+            <input type="text" id="dayOfTheYear" name="dayOfTheYear" />
+        </div>
+
+        <label for="year" class="col-md-2">Year:</label>
+        <div class="col-md-10">
+            <input type="text" id="year" name="year" />
+        </div>
+
+        <label for="userId" class="col-md-2">User ID:</label>
+        <div class="col-md-10">
+            <input type="text" id="userId" name="userId" />
+        </div>
+
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
     </fieldset>
 </form>

@@ -14,6 +14,6 @@ namespace AOHarvestApp.Manager.Interfaces
 
         bool Validator(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors);
 
-        IEnumerable<DayEntry> GetDayEntries();
+        IEnumerable<DayEntry> GetDailyEntries(int dayOfTheYear, int year, int userId);
     }
 }

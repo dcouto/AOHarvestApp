@@ -30,15 +30,25 @@ namespace AOHarvestApp.Managers
             return true;
         }
 
-        public IEnumerable<DayEntry> GetDayEntries()
+        public IEnumerable<DayEntry> GetDailyEntries(int dayOfTheYear, int year, int userId)
         {
-            var dayEntries = Enumerable.Empty<DayEntry>();
+            var dailyEntries = Enumerable.Empty<DayEntry>();
 
-            string uri = string.Format("https://{0}.harvestapp.com/daily/#346/#2015", SubDomain);
+            string uri = string.Format("https://{0}.harvestapp.com/daily", SubDomain);
+
+            if (dayOfTheYear > -1 && year > -1)
+                uri = string.Format("{0}/#{1}/#{2}", uri, dayOfTheYear, year);
+
+            if (userId > -1)
+                uri = string.Format("{0}?user_id={1}", uri, userId);
 
             ServicePointManager.ServerCertificateValidationCallback = Validator;
 
             var request = WebRequest.Create(uri) as HttpWebRequest;
+
+            if (request == null)
+                return dailyEntries;
+
             request.MaximumAutomaticRedirections = 1;
             request.AllowAutoRedirect = true;
 
@@ -49,28 +59,37 @@ namespace AOHarvestApp.Managers
             request.UserAgent = "harvest_api_sample.cs";
 
             // 3. Add the Basic Authentication header with username/password string.
-            request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(new ASCIIEncoding().GetBytes(EmailAndPassword)));
+            var authorizationHeader = "Basic " + Convert.ToBase64String(new ASCIIEncoding().GetBytes(EmailAndPassword));
+            request.Headers.Add("Authorization", authorizationHeader);
+
+            if (!request.HaveResponse)
+                return dailyEntries;
 
             using (var response = request.GetResponse() as HttpWebResponse)
             {
-                if (request.HaveResponse == true && response != null)
+                if (response == null)
+                    return dailyEntries;
+
+                var responseStream = response.GetResponseStream();
+
+                if (responseStream == null)
+                    return dailyEntries;
+
+                using (var reader = new StreamReader(responseStream, Encoding.UTF8))
                 {
-                    using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+                    var xDoc = XDocument.Load(reader);
+
+                    if (xDoc.Root != null)
                     {
-                        var xDoc = XDocument.Load(reader);
+                        var xElement = xDoc.Root.Element("day_entries");
 
-                        if (xDoc.Root != null)
-                        {
-                            var xElement = xDoc.Root.Element("day_entries");
-
-                            if (xElement != null)
-                                dayEntries = xElement.Elements().Select(i => new DayEntry(i));
-                        }
+                        if (xElement != null)
+                            dailyEntries = xElement.Elements().Select(i => new DayEntry(i));
                     }
                 }
             }
 
-            return dayEntries;
+            return dailyEntries;
         }
     }
 }

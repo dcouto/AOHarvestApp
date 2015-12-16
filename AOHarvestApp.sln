@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.Managers", "AO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.Manager.Interfaces", "AOHarvestApp.Manager.Interfaces\AOHarvestApp.Manager.Interfaces.csproj", "{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOHarvestApp.IoCContainer", "AOHarvestApp.IoCContainer\AOHarvestApp.IoCContainer.csproj", "{6551F990-E7FA-409C-8AE5-D80DE167B9D0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB7107A5-BFD4-41F1-B04A-880DCCEEC1AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6551F990-E7FA-409C-8AE5-D80DE167B9D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
