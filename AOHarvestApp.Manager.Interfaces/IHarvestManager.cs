@@ -10,7 +10,6 @@ namespace AOHarvestApp.Manager.Interfaces
         string SubDomain { get; set; }
         string Email { get; set; }
         string Password { get; set; }
-        string EmailAndPassword { get; }
 
         bool Validator(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors);
 

@@ -17,7 +17,7 @@ namespace AOHarvestApp.Managers
         public string SubDomain { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string EmailAndPassword
+        private string EmailAndPassword
         {
             get
             {
@@ -34,10 +34,10 @@ namespace AOHarvestApp.Managers
         {
             var dailyEntries = Enumerable.Empty<DayEntry>();
 
-            string uri = string.Format("https://{0}.harvestapp.com/daily", SubDomain);
+            var uri = string.Format("https://{0}.harvestapp.com/daily", SubDomain);
 
             if (dayOfTheYear > -1 && year > -1)
-                uri = string.Format("{0}/#{1}/#{2}", uri, dayOfTheYear, year);
+                uri = string.Format("{0}/{1}/{2}", uri, dayOfTheYear, year);
 
             if (userId > -1)
                 uri = string.Format("{0}?user_id={1}", uri, userId);
@@ -59,15 +59,11 @@ namespace AOHarvestApp.Managers
             request.UserAgent = "harvest_api_sample.cs";
 
             // 3. Add the Basic Authentication header with username/password string.
-            var authorizationHeader = "Basic " + Convert.ToBase64String(new ASCIIEncoding().GetBytes(EmailAndPassword));
-            request.Headers.Add("Authorization", authorizationHeader);
-
-            if (!request.HaveResponse)
-                return dailyEntries;
+            request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(new ASCIIEncoding().GetBytes(EmailAndPassword)));
 
             using (var response = request.GetResponse() as HttpWebResponse)
             {
-                if (response == null)
+                if (!request.HaveResponse || response == null)
                     return dailyEntries;
 
                 var responseStream = response.GetResponseStream();
