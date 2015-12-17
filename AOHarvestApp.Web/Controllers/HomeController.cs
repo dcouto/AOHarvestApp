@@ -1,6 +1,9 @@
-﻿using AOHarvestApp.Web.ViewModels.Home;
+﻿using System.Linq;
+using AOHarvestApp.Web.ViewModels.Home;
 using System.Web.Mvc;
 using AOHarvestApp.Manager.Interfaces;
+using AOHarvestApp.Models;
+using AOHarvestApp.Models.Requests;
 
 namespace AOHarvestApp.Web.Controllers
 {
@@ -32,7 +35,14 @@ namespace AOHarvestApp.Web.Controllers
             _harvestManager.Email = model.Email;
             _harvestManager.Password = model.Password;
 
-            vm.DailyEntries = _harvestManager.GetDailyEntries(model.DayOfTheYear, model.Year, model.UserId);
+            var request = new GetDailyEntriesRequest();
+            request.DayOfTheYear = model.DayOfTheYear;
+            request.Year = model.Year;
+            request.UserId = model.UserId;
+
+            var response = _harvestManager.GetDailyEntries(request);
+
+            vm.DailyEntries = response != null ? response.Entries : Enumerable.Empty<DayEntry>();
 
             return View(vm);
         }

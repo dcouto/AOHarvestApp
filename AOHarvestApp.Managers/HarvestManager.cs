@@ -9,6 +9,8 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
+using AOHarvestApp.Models.Requests;
+using AOHarvestApp.Models.Responses;
 
 namespace AOHarvestApp.Managers
 {
@@ -25,51 +27,54 @@ namespace AOHarvestApp.Managers
             }
         }
 
-        public bool Validator(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        private bool Validator(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             return true;
         }
 
-        public IEnumerable<DayEntry> GetDailyEntries(int dayOfTheYear, int year, int userId)
+        public GetDailyEntriesResponse GetDailyEntries(GetDailyEntriesRequest request)
         {
-            var dailyEntries = Enumerable.Empty<DayEntry>();
+            var response = new GetDailyEntriesResponse();
+
+            if (request == null)
+                return response;
 
             var uri = string.Format("https://{0}.harvestapp.com/daily", SubDomain);
 
-            if (dayOfTheYear > -1 && year > -1)
-                uri = string.Format("{0}/{1}/{2}", uri, dayOfTheYear, year);
+            if (request.DayOfTheYear > -1 && request.Year > -1)
+                uri = string.Format("{0}/{1}/{2}", uri, request.DayOfTheYear, request.Year);
 
-            if (userId > -1)
-                uri = string.Format("{0}?user_id={1}", uri, userId);
+            if (request.UserId > -1)
+                uri = string.Format("{0}?user_id={1}", uri, request.UserId);
 
             ServicePointManager.ServerCertificateValidationCallback = Validator;
 
-            var request = WebRequest.Create(uri) as HttpWebRequest;
+            var webRequest = WebRequest.Create(uri) as HttpWebRequest;
 
-            if (request == null)
-                return dailyEntries;
+            if (webRequest == null)
+                return response;
 
-            request.MaximumAutomaticRedirections = 1;
-            request.AllowAutoRedirect = true;
+            webRequest.MaximumAutomaticRedirections = 1;
+            webRequest.AllowAutoRedirect = true;
 
             // 2. It's important that both the Accept and ContentType headers are
             // set in order for this to be interpreted as an API request.
-            request.Accept = "application/xml";
-            request.ContentType = "application/xml";
-            request.UserAgent = "harvest_api_sample.cs";
+            webRequest.Accept = "application/xml";
+            webRequest.ContentType = "application/xml";
+            webRequest.UserAgent = "harvest_api_sample.cs";
 
             // 3. Add the Basic Authentication header with username/password string.
-            request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(new ASCIIEncoding().GetBytes(EmailAndPassword)));
+            webRequest.Headers.Add("Authorization", string.Format("Basic {0}", Convert.ToBase64String(new ASCIIEncoding().GetBytes(EmailAndPassword))));
 
-            using (var response = request.GetResponse() as HttpWebResponse)
+            using (var webResponse = webRequest.GetResponse() as HttpWebResponse)
             {
-                if (!request.HaveResponse || response == null)
-                    return dailyEntries;
+                if (!webRequest.HaveResponse || webResponse == null)
+                    return response;
 
-                var responseStream = response.GetResponseStream();
+                var responseStream = webResponse.GetResponseStream();
 
                 if (responseStream == null)
-                    return dailyEntries;
+                    return response;
 
                 using (var reader = new StreamReader(responseStream, Encoding.UTF8))
                 {
@@ -80,12 +85,12 @@ namespace AOHarvestApp.Managers
                         var xElement = xDoc.Root.Element("day_entries");
 
                         if (xElement != null)
-                            dailyEntries = xElement.Elements().Select(i => new DayEntry(i));
+                            response.Entries = xElement.Elements().Select(i => new DayEntry(i));
                     }
                 }
             }
 
-            return dailyEntries;
+            return response;
         }
     }
 }

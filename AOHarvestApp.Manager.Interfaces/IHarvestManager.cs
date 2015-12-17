@@ -1,7 +1,7 @@
-﻿using AOHarvestApp.Models;
-using System.Collections.Generic;
-using System.Net.Security;
+﻿using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using AOHarvestApp.Models.Requests;
+using AOHarvestApp.Models.Responses;
 
 namespace AOHarvestApp.Manager.Interfaces
 {
@@ -11,8 +11,6 @@ namespace AOHarvestApp.Manager.Interfaces
         string Email { get; set; }
         string Password { get; set; }
 
-        bool Validator(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors);
-
-        IEnumerable<DayEntry> GetDailyEntries(int dayOfTheYear, int year, int userId);
+        GetDailyEntriesResponse GetDailyEntries(GetDailyEntriesRequest request);
     }
 }
